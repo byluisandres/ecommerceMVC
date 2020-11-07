@@ -10,14 +10,14 @@ class Control
 {
     //propiedades
     protected $controlador = "Login";
-    protected $metodo = "caratula";
+    protected $metodo = "index";
     protected $parametros = [];
 
     function __construct()
     {
         $url = $this->separarURL();
 
-        if ($url !== "" && file_exists("../app/controller/" . ucwords($url[0]) . ".php")) {
+        if ($url !="" && file_exists("../app/controller/" . ucwords($url[0]) . ".php")) {
             $this->controlador = ucwords($url[0]);
             unset($url[0]);
         }

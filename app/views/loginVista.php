@@ -1,4 +1,4 @@
-<?php include "encabezado.php"; ?>
+<?php include "includes/encabezado.php"; ?>
 <div class="container">
     <!-- Default form login -->
     <form class="text-center border border-light p-5 mt-5" action="#!">
@@ -17,16 +17,16 @@
             </div>
             <div>
                 <!-- Forgot password -->
-                <a href="login/olvido">¿Olvidaste tu contraseña?</a>
+                <a href="<?php print RUTA; ?>login/olvido">¿Olvidaste tu contraseña?</a>
             </div>
         </div>
         <!-- Sign in button -->
         <button class="btn btn-info btn-block my-4" type="submit">Entrar</button>
         <!-- Register -->
         <p>Not a member?
-            <a href="login/registro">Registrarse</a>
+            <a href="<?php print RUTA; ?>login/registro">Registrarse</a>
         </p>
     </form>
     <!-- Default form login -->
 </div>
-<?php include "footer.php"; ?>
+<?php include "includes/footer.php"; ?>

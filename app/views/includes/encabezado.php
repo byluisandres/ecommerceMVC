@@ -15,10 +15,12 @@
 
 <body>
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-        <a href="index.php" class="navbar-brand">Tienda</a>
+        <a href="<?php print RUTA; ?>" class="navbar-brand">Tienda</a>
         <?php
         if ($datos["menu"]) {
             //menu
         }
         ?>
     </nav>
+
+    
