@@ -19,7 +19,7 @@ class Controlador
         if (file_exists("../app/views/" . $vista . ".php")) {
             require_once "../app/views/" . $vista . ".php";
         } else {
-            die("la vista no existe ...");
+            die("la vista no existe");
         }
     }
 }

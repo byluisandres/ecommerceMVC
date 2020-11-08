@@ -51,8 +51,8 @@ class Login extends Controlador
         "password2" => $password2,
       ];
       if (
-        $nombre == "" && $email == "" && $direccion == "" && $ciudad == "" && $codigoPostal == "" && $pais == ""
-        && $password1 == "" && $password2 == ""
+        $nombre == "" || $email == "" || $direccion == "" || $ciudad == "" || $codigoPostal == "" || $pais == ""
+        || $password1 == "" || $password2 == ""
       ) {
         array_push($errores, "Todos los datos son obigatorios");
       }
@@ -65,7 +65,39 @@ class Login extends Controlador
 
 
       if (count($errores) == 0) {
-        print "dar de alta";
+        $resultado = $this->modelo->insertarRegistro($data);
+
+
+
+        if ($resultado) {
+          $datos = [
+            "titulo" => "Bienvenid@ a la tienda virtual",
+            "menu" => false,
+            "errores" => [],
+            "data" => [],
+            "subtitulo" => "Bienvenid@",
+            "texto" => "Gracias por registrarse",
+            "color" => "alert-success",
+            "url" => "menu",
+            "colorBoton" => "btn-success",
+            "textoBoton" => "Iniciar"
+          ];
+          $this->vista("mensajeVista", $datos);
+        } else {
+          $datos = [
+            "titulo" => "Error",
+            "menu" => false,
+            "errores" => [],
+            "data" => [],
+            "subtitulo" => "",
+            "texto" => "Puede que exista ya el correo",
+            "color" => "alert-danger",
+            "url" => "login",
+            "colorBoton" => "btn-danger",
+            "textoBoton" => "Regresar"
+          ];
+          $this->vista("mensajeVista", $datos);
+        }
       } else {
         $datos = [
           "titulo" => "Registro Usuario",
@@ -73,14 +105,14 @@ class Login extends Controlador
           "errores" => $errores,
           "data" => $data
         ];
-        $this->vista("loginRegistroVista", $datos);
+        $this->vista("RegistroVista", $datos);
       }
     } else {
       $datos = [
         "titulo" => "Registro Usuario",
         "menu" => false
       ];
-      $this->vista("loginRegistroVista", $datos);
+      $this->vista("RegistroVista", $datos);
     }
   }
 }
