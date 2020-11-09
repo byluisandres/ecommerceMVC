@@ -17,7 +17,7 @@
             </div>
             <div>
                 <!-- Forgot password -->
-                <a href="<?php print RUTA; ?>login/olvido">¿Olvidaste tu contraseña?</a>
+                <a href="<?php print RUTA; ?>login/olvido">¿Recuperar contraseña?</a>
             </div>
         </div>
         <!-- Sign in button -->

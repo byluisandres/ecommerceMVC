@@ -21,10 +21,56 @@ class Login extends Controlador
     $this->vista("loginVista", $datos);
   }
 
+
+
   function olvido()
   {
-    echo "Hola desde olvido";
+    $errores = array();
+    if ($_SERVER['REQUEST_METHOD'] === "POST") {
+      $email = isset($_POST['email']) ? $_POST['email'] : "";
+      if ($email == "") {
+        array_push($errores, "Escribe tu correo para poder recupar la contraseña");
+       
+      }
+      if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        array_push($errores, "Formato del correo no válido");
+      }
+      
+      if (count($errores) == 0) {
+        if ($this->modelo->validaCorreo($email)) {
+          array_push($errores, "El correo no exite");
+        } else {
+          $this->modelo->enviarCorreo($email);
+        }
+      }
+    } else {
+      $datos = [
+        "titulo" => "Recuperar contaseña",
+        "menu" => false,
+        "errores" => [],
+        "data" => [],
+        "subtitulo" => "Recuperar contaseña",
+      ];
+      $this->vista("olvidoVista", $datos);
+    }
+
+    if (count($errores)) {
+      $datos = [
+        "titulo" => "Recuperar contaseña",
+        "menu" => false,
+        "errores" => $errores,
+        "data" => [],
+        "subtitulo" => "Recuperar contaseña",
+      ];
+      $this->vista("olvidoVista", $datos);
+    }
   }
+
+
+
+
+
+
 
   function registro()
   {
@@ -63,12 +109,8 @@ class Login extends Controlador
         array_push($errores, "Las contraseñas deben coincidir");
       }
 
-
       if (count($errores) == 0) {
         $resultado = $this->modelo->insertarRegistro($data);
-
-
-
         if ($resultado) {
           $datos = [
             "titulo" => "Bienvenid@ a la tienda virtual",
