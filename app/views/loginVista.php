@@ -1,7 +1,7 @@
 <?php include "includes/encabezado.php"; ?>
 <div class="container">
     <!-- Default form login -->
-    <form class="text-center border border-light p-5 mt-5" action="#!">
+    <form class="text-center border border-light p-5 mt-5" action="<?php print RUTA;?>login" method="POST">
         <p class="h4 mb-4">Login</p>
         <!-- Email -->
         <input type="email" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="E-mail">

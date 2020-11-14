@@ -7,7 +7,7 @@
         <!-- Password -->
         <input type="email" id="email" name="email" class="form-control mb-4" placeholder="Escribe tu correo electrónico">
 
-        <small id="emailHelp" class="form-text text-muted">Se enviara un correo para recuperar la contraseña.</small>
+        <small id="emailHelp" class="form-text text-muted">Se enviara un correo para cambiar la contraseña.</small>
         <!-- Sign in button -->
         <?php include "includes/errores.php" ?> 
         <button class="btn btn-info btn-block my-4" type="submit">Recuperar contraseña</button>

@@ -40,9 +40,36 @@ class LoginModelo
         $data = $this->db->query($sql);
         return count($data) == 0 ? true : false;
     }
+    function getUsuarioCorrero($email)
+    {
+        $sql = "SELECT * FROM usuarios WHERE email='$email'";
+        $data = $this->db->query($sql);
+        return $data;
+    }
 
     function enviarCorreo($email)
     {
-        print $email;
+        $data = $this->getUsuarioCorrero($email);
+        $id = $data['id'];
+        $nombre = $data['nombre'];
+        $msg = $nombre . ", entra el siguiente enlace para cambiar tu contraseña</br>";
+        $msg .= "<a  href='http://localhost" . RUTA . "login/cambiaClave/" . $id . "' class='btn btn-primary'>Cambiar contraseña</a>";
+        $headers = "MIME-Version:1.0\r\n";
+        $headers .= "Content-type:text/html; charset=UTF-8\r\n";
+        $headers .= "From:eCommerce\r\n";
+        $headers .= "Repaly-to:$email\r\n";
+
+        $asunto = "Cambiar clave de acceso";
+        return @mail($email, $asunto, $msg, $headers);
+    }
+
+    function cambiaClaveAcceso($id, $password1)
+    {
+        $resultado = false;
+        //validar 
+        $clave = hash_hmac("sha512", $password1, "mimamamimima");
+        $sql = "UPDATE usuarios SET clave='$clave' WHERE id='$id'";
+        $resultado = $this->db->queryNoSelect($sql);
+        return $resultado;
     }
 }
