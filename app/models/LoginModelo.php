@@ -72,4 +72,29 @@ class LoginModelo
         $resultado = $this->db->queryNoSelect($sql);
         return $resultado;
     }
+
+    function verificar($email, $password)
+    {
+        $errores = array();
+        if ($email == "" | $password == "") {
+            array_push($errores, "Todos los campos son obligatorios");
+        } else {
+            $clave = hash_hmac("sha512", $password, "mimamamimima");
+            $sql = "SELECT * FROM usuarios WHERE email='$email' AND clave='$clave'";
+            $data = $this->db->query($sql);
+
+
+            if (empty($data)) {
+                array_push($errores, "El usuario y/o la contraseña con incorrectas.");
+            }
+        }
+
+        //  else if ($clave != $data['clave']) {
+        //     var_dump($errores);
+        //     die();
+        //   array_push($errores, "Contraseña incorrecta");
+        //  }
+
+        return $errores;
+    }
 }

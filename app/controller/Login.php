@@ -245,4 +245,33 @@ class Login extends Controlador
       $this->vista("cambiaClave", $datos);
     }
   }
+
+  function verifica()
+  {
+    $errores = array();
+
+    if ($_SERVER['REQUEST_METHOD'] === "POST") {
+      $usuario = isset($_POST['email']) ? $_POST['email'] : "";
+      $password = isset($_POST['password']) ? $_POST['password'] : "";
+      $recordar = isset($_POST['recordar']) ? "on" : "off";
+  
+      $errores = $this->modelo->verificar($usuario, $password);
+      $data = [
+        "usuario" => $usuario,
+        "clave" => $password,
+        "recordar" => $recordar
+      ];
+      if (empty($errores)) {
+        header("Location:".RUTA."tienda");
+      } else {
+        $datos = [
+          "titulo" => "Login",
+          "menu" => false,
+          "errores" => $errores,
+          "data" => $data
+        ];
+        $this->vista("loginVista", $datos);
+      }
+    }
+  }
 }

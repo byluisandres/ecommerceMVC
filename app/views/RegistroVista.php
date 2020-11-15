@@ -21,7 +21,7 @@
         <input type="password" id="password2" name="password2" class="form-control mb-4" placeholder="Repita su contraseña" value="<?php isset($datos["data"]["nombre"]) ? print $datos["data"]["password2"] : "" ?>">
 
         <?php include "includes/errores.php" ?>
-        <button class="btn btn-info btn-block my-4" type="submit">Entrar</button>
+        <button class="btn btn-info btn-block my-4" type="submit">Registrarse</button>
 
     </form>
     <!-- Default form login -->
