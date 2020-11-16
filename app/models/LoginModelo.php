@@ -40,7 +40,7 @@ class LoginModelo
         $data = $this->db->query($sql);
         return count($data) == 0 ? true : false;
     }
-    function getUsuarioCorrero($email)
+    function getUsuarioCoreo($email)
     {
         $sql = "SELECT * FROM usuarios WHERE email='$email'";
         $data = $this->db->query($sql);
@@ -49,7 +49,7 @@ class LoginModelo
 
     function enviarCorreo($email)
     {
-        $data = $this->getUsuarioCorrero($email);
+        $data = $this->getUsuarioCoreo($email);
         $id = $data['id'];
         $nombre = $data['nombre'];
         $msg = $nombre . ", entra el siguiente enlace para cambiar tu contraseña</br>";

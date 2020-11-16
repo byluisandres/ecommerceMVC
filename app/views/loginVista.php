@@ -12,10 +12,7 @@
             <div>
                 <!-- Remember me -->
                 <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="recordar" name="recordar" <?php if (isset($datos["data"]["recordar"])) {
-                                                                                                            if (isset($datos["data"]["recordar"]) == "on") print "checked";
-                                                                                                        }
-                                                                                                        ?>">
+                    <input type="checkbox" class="custom-control-input" id="recordar" name="recordar" <?php if (isset($datos["data"]["recordar"]) == "on") print "checked";?>>
                     <label class="custom-control-label" for="recordar">Recordar</label>
                 </div>
             </div>

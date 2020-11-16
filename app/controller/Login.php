@@ -14,11 +14,25 @@ class Login extends Controlador
 
   function index()
   {
+    if (isset($_COOKIE['datos'])) {
+      $datos_array = explode("|", $_COOKIE['datos']);
+      $usuario = $datos_array[0];
+      $clave = $datos_array[1];
+      $data = [
+        "usuario" => $usuario,
+        "clave" => $clave,
+        "recordar" => "on",
+      ];
+    } else {
+      $data = [];
+    }
     $datos = [
       "titulo" => "Login",
-      "menu" => false
+      "menu" => false,
+      "data" => $data
     ];
     $this->vista("loginVista", $datos);
+    //$this->vista("inicioVista", $datos=[]);
   }
 
 
@@ -254,15 +268,26 @@ class Login extends Controlador
       $usuario = isset($_POST['email']) ? $_POST['email'] : "";
       $password = isset($_POST['password']) ? $_POST['password'] : "";
       $recordar = isset($_POST['recordar']) ? "on" : "off";
-  
+
       $errores = $this->modelo->verificar($usuario, $password);
+      //Recuerdame
+      $valor = $usuario . "|" . $password;
+      if ($recordar = "on") {
+        $fecha = time() + (60 * 60 * 607);
+      } else {
+        $fecha = time() - 1;
+      }
+      setcookie("datos", $valor, $fecha, RUTA);
       $data = [
         "usuario" => $usuario,
         "clave" => $password,
         "recordar" => $recordar
       ];
       if (empty($errores)) {
-        header("Location:".RUTA."tienda");
+        $data = $this->modelo->getUsuarioCoreo($usuario);
+        $session = new Session();
+        $session->iniciarLogin($data);
+        header("Location:" . RUTA . "tienda");
       } else {
         $datos = [
           "titulo" => "Login",

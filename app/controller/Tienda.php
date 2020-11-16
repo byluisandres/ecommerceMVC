@@ -14,13 +14,15 @@ class Tienda extends Controlador
 
   function index()
   {
-    $datos = [
-      "titulo" => "Bienvenido a nuestra tienda",
-      "menu" => false
-    ];
-    $this->vista("tiendaVista", $datos);
+    $session = new Session();
+    if ($session->getLogin()) {
+      $datos = [
+        "titulo" => "Bienvenido a nuestra tienda",
+        "menu" => false
+      ];
+      $this->vista("tiendaVista", $datos);
+    } else {
+      header("Location:" . RUTA);
+    }
   }
-
-
-
 }
