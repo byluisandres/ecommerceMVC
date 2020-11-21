@@ -16,11 +16,21 @@
 <body>
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
         <a href="<?php print RUTA; ?>" class="navbar-brand">Tienda</a>
-        <?php
-        if ($datos["menu"]) {
-            //menu
-        }
-        ?>
-    </nav>
+        <div class="collapse navbar-collapse" id="menu">
+            <?php
+            if ($datos["menu"]) {
+                //menu
+            }
+            ?>
+            <?php if (isset($datos['admon'])) : ?>
+                <?php if ($datos['admon']) : ?>
+                    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                        <li class="nav-item">
+                            <a href="<?php echo RUTA; ?>admonUsuarios" class="nav-link">Usuarios</a>
+                        </li>
+                    </ul>
+                <?php endif; ?>
+            <?php endif; ?>
 
-    
+        </div>
+    </nav>

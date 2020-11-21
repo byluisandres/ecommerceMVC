@@ -88,13 +88,6 @@ class LoginModelo
                 array_push($errores, "El usuario y/o la contraseña con incorrectas.");
             }
         }
-
-        //  else if ($clave != $data['clave']) {
-        //     var_dump($errores);
-        //     die();
-        //   array_push($errores, "Contraseña incorrecta");
-        //  }
-
         return $errores;
     }
 }

@@ -112,6 +112,7 @@ class Login extends Controlador
     $errores = array();
     $data = array();
     if ($_SERVER['REQUEST_METHOD'] === "POST") {
+
       $nombre = isset($_POST['nombre']) ? $_POST['nombre'] : "";
       $email = isset($_POST['email']) ? $_POST['email'] : "";
       $direccion = isset($_POST['direccion']) ? $_POST['direccion'] : "";
