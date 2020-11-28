@@ -1,9 +1,15 @@
-<?php 
+<?php
 
-class AdmonModelo{
+class AdmonModelo
+{
     private $db;
     function __construct()
     {
-        $this->db= new MySQLdb();
+        $this->db = new MySQLdb();
+    }
+
+    function verificarClave($data)
+    {
+        var_dump($data);
     }
 }

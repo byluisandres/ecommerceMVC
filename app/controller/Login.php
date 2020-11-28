@@ -35,8 +35,6 @@ class Login extends Controlador
     //$this->vista("inicioVista", $datos=[]);
   }
 
-
-
   function olvido()
   {
     $errores = array();
